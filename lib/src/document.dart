@@ -38,11 +38,11 @@ class PDFDocument {
   /// [Map<String,String headers] headers to pass for the [url]
   /// [CacheManager cacheManager] to provide configuration for
   /// cache management
-  static Future<PDFDocument> fromURL(String url,
-      {Map<String, String>? headers, CacheManager? cacheManager}) async {
+ static Future<PDFDocument> fromURL(String url,
+      {Map<String, String>? headers, CacheManager? cacheManager, String? key}) async {
     // Download into cache
     final f = await (cacheManager ?? DefaultCacheManager())
-        .getSingleFile(url, headers: headers);
+        .getSingleFile(url, headers: headers, key: key);
     final document = PDFDocument();
     document._filePath = f.path;
     try {
